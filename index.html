@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BELIEVERS IN BUSINESS CONFERENCE 2026</title>
-    <meta name="description" content="Join the BELIEVERS IN BUSINESS CONFERENCE 2026 - 3 Days of Breaking Limitations, Walking In Favour, And Commanding Profit.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            --gold: #D4AF37;
+            --gold-dark: #b8941f;
             --dark-bg: #0a0a0a;
-            --darker-bg: #050505;
-            --gold-accent: #D4AF37;
-            --gold-light: #e6c052;
-            --gold-gradient: linear-gradient(135deg, #D4AF37, #f0d064);
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
+            --dark-card: rgba(30, 30, 30, 0.7);
+            --dark-text: #f0f0f0;
+            --dark-text-secondary: #ccc;
+            --dark-border: rgba(212, 175, 55, 0.3);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -25,96 +25,120 @@
         }
 
         body {
-            font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
         }
 
-        body::before {
-            content: '';
+        /* Scroll Progress Indicator */
+        #progress-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 20%),
-                        radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 20%);
-            z-index: -1;
+            height: 4px;
+            z-index: 1000;
+            background: transparent;
         }
 
-        .particles {
+        #progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Announcement Bar */
+        .announcement-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
+            background: linear-gradient(90deg, #1a1a1a, #2a2a2a);
+            padding: 12px 0;
+            z-index: 100;
+            animation: glow 2s infinite alternate;
+            border-bottom: 1px solid var(--dark-border);
         }
 
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--gold-accent);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
+        @keyframes glow {
+            from { box-shadow: 0 0 5px rgba(212, 175, 55, 0.3); }
+            to { box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
         }
 
-        @keyframes float {
-            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) translateX(calc((var(--x) - 0.5) * 100vw)); opacity: 0; }
-        }
-
-        .container {
+        .announcement-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gold);
+            letter-spacing: 0.5px; /* Added letter spacing for elegance */
         }
 
-        /* Header Styles */
-        header {
-            padding: 1rem 0;
+        /* Navigation */
+        nav {
             position: fixed;
-            top: 0;
+            top: 60px;
             width: 100%;
-            z-index: 1000;
+            padding: 20px 0;
+            z-index: 99;
             backdrop-filter: blur(10px);
             background: rgba(10, 10, 10, 0.8);
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--dark-border);
         }
 
-        nav {
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 20px;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--gold-accent);
-            text-decoration: none;
+            color: var(--gold);
+            letter-spacing: 1px; /* Added letter spacing */
+            /* Removed the text "BIB 2026" */
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 30px;
         }
 
         .nav-links a {
-            color: var(--text-primary);
+            color: var(--dark-text);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.3px; /* Added letter spacing */
         }
 
         .nav-links a:hover {
-            color: var(--gold-accent);
+            color: var(--gold);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
@@ -122,447 +146,570 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            justify-content: center;
             position: relative;
+            padding: 120px 20px 60px;
+            text-align: center;
             overflow: hidden;
         }
 
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1), transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1), transparent 50%);
+            z-index: -1;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: var(--gold-gradient);
+            font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--gold), #f0c050);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-            color: var(--gold-accent);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.5px; /* Adjusted letter spacing */
         }
 
         .hero p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: clamp(1rem, 2.5vw, 1.2rem); /* Responsive font size */
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            color: var(--dark-text-secondary); /* Used secondary color */
+        }
+
+        .hero p:last-of-type { /* Target the specific description paragraph */
+             font-size: clamp(1.1rem, 2.7vw, 1.3rem); /* Slightly larger for main description */
+             font-weight: 400;
+             margin-bottom: 40px;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 1rem 2rem;
+            padding: 15px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--gold-accent);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px; /* Added letter spacing */
+            border: none; /* Remove default button border */
         }
 
         .btn-primary {
-            background: var(--gold-gradient);
+            background: linear-gradient(45deg, var(--gold), #b8941f);
             color: var(--dark-bg);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--gold-accent);
+            color: var(--gold);
+            border: 2px solid var(--gold);
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
         }
 
-        .btn-primary:hover {
-            filter: brightness(1.1);
+        .secure-payment {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            color: var(--dark-text-secondary); /* Used secondary color */
         }
 
-        .btn-secondary:hover {
-            background: var(--glass-bg);
-        }
-
-        /* Section Styles */
+        /* Section Styling */
         section {
-            padding: 5rem 0;
-            position: relative;
+            padding: 100px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: clamp(2rem, 4vw, 2.5rem); /* Responsive font size */
+            margin-bottom: 60px;
             position: relative;
+            font-weight: 600;
+            letter-spacing: -0.5px; /* Adjusted letter spacing */
         }
 
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: var(--gold-gradient);
-            border-radius: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
         }
 
         /* What You Will Learn */
-        .learn-grid {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 25px;
         }
 
-        .learn-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+        .feature-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
             border-radius: 15px;
-            padding: 2rem;
+            padding: 30px;
             text-align: center;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
         }
 
-        .learn-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .learn-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--gold-accent);
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
         }
 
-        .learn-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+             font-weight: 500; /* Slightly lighter weight for sub-headers */
+             font-size: 1.1rem; /* Consistent font size */
+             letter-spacing: -0.2px; /* Adjusted letter spacing */
+        }
+
+        /* Speaker Section */
+        .speaker-section {
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 0.9));
+        }
+
+        .speaker-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .speaker-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .speaker-img {
+            width: 100%;
+            border-radius: 15px;
+            border: 3px solid var(--gold);
+            filter: grayscale(20%);
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
+        }
+
+        .speaker-content {
+            flex: 1;
+        }
+
+        .speaker-name {
+            font-size: clamp(1.8rem, 3.5vw, 2rem); /* Responsive font size */
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: -0.5px; /* Adjusted letter spacing */
+        }
+
+        .speaker-title {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            color: var(--dark-text-secondary); /* Used secondary color */
+            font-weight: 400;
+        }
+
+         .speaker-content p {
+             color: var(--dark-text-secondary); /* Used secondary color */
+             line-height: 1.8; /* Increased line height for readability */
+             font-size: 1.05rem;
+         }
+
+        /* Why Attend */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .why-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .why-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .why-card:hover {
+            transform: scale(1.03);
+        }
+
+        .why-card h3 {
+             font-weight: 500; /* Slightly lighter weight for sub-headers */
+             font-size: 1.1rem; /* Consistent font size */
+             letter-spacing: -0.2px; /* Adjusted letter spacing */
         }
 
         /* Event Details */
         .details-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 25px;
         }
 
         .detail-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
             border-radius: 15px;
-            padding: 2rem;
+            padding: 25px;
             text-align: center;
-            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
         }
 
         .detail-icon {
             font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--gold-accent);
+            color: var(--gold);
+            margin-bottom: 15px;
         }
 
-        .detail-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gold-accent);
-            margin: 0.5rem 0;
+        .detail-card h3 {
+             font-weight: 600; /* Bolder for detail titles */
+             font-size: 1.2rem; /* Larger font for detail titles */
+             margin-bottom: 10px;
         }
 
-        .detail-label {
-            color: var(--text-secondary);
-            font-size: 1rem;
+        .detail-card p {
+             color: var(--dark-text-secondary); /* Used secondary color */
+             font-size: 1.1rem; /* Slightly larger for detail content */
         }
 
-        /* Why Attend */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        /* Registration Process */
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        .feature-box {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+        .step-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
             border-radius: 15px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateX(-30px);
         }
 
-        .feature-box:hover {
-            transform: translateY(-5px);
+        .step-card.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        .feature-box h3 {
-            color: var(--gold-accent);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        /* Speakers */
-        .speakers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .speaker-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .speaker-image {
-            width: 120px;
-            height: 120px;
+        .step-number {
+            min-width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--gold), #b8941f);
             border-radius: 50%;
-            background: var(--gold-gradient);
-            margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: var(--dark-bg);
-        }
-
-        .speaker-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .speaker-title {
-            color: var(--gold-accent);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Countdown */
-        .countdown {
-            background: var(--darker-bg);
-            padding: 4rem 0;
-            margin: 3rem 0;
-        }
-
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .countdown-item {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 1.5rem;
-            min-width: 100px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .countdown-number {
-            font-size: 2.5rem;
             font-weight: 700;
-            color: var(--gold-accent);
-            margin-bottom: 0.5rem;
+            color: var(--dark-bg);
+            font-size: 1.2rem;
         }
 
-        .countdown-label {
+        .step-card div h3 {
+             font-weight: 500; /* Slightly lighter weight for sub-headers */
+             font-size: 1.1rem; /* Consistent font size */
+             letter-spacing: -0.2px; /* Adjusted letter spacing */
+             margin: 0; /* Reset margin */
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 0.9));
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .time-unit {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 15px;
+            padding: 25px 10px;
+            text-align: center;
+        }
+
+        .time-value {
+            font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 5px;
+            letter-spacing: -1px; /* Adjusted letter spacing */
+        }
+
+        .time-label {
             font-size: 0.9rem;
-            color: var(--text-secondary);
+            opacity: 0.7;
+            color: var(--dark-text-secondary); /* Used secondary color */
+            text-transform: uppercase; /* Uppercase for labels */
+            letter-spacing: 1px; /* Added letter spacing */
         }
 
         /* Testimonials */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 30px;
         }
 
         .testimonial-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
             border-radius: 15px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
+            padding: 30px;
             position: relative;
         }
 
         .testimonial-card::before {
             content: '"';
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            top: 20px;
+            left: 20px;
             font-size: 4rem;
-            color: var(--gold-accent);
+            color: var(--gold);
             opacity: 0.2;
+            font-family: serif;
             line-height: 1;
         }
 
-        .testimonial-text {
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            color: var(--gold-accent);
-            font-weight: 500;
+        .testimonial-card p {
+             font-style: italic; /* Italic for quotes */
+             color: var(--dark-text-secondary); /* Used secondary color */
+             line-height: 1.7; /* Increased line height for readability */
+             padding-top: 15px; /* Space for quote mark */
+             font-size: 1.05rem; /* Slightly larger font */
         }
 
         /* FAQ */
         .faq-item {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            backdrop-filter: blur(10px);
+            margin-bottom: 15px;
         }
 
         .faq-question {
-            padding: 1.5rem;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 10px;
+            padding: 20px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 600;
+            transition: var(--transition);
+            font-weight: 500;
+            letter-spacing: -0.1px; /* Adjusted letter spacing */
+        }
+
+        .faq-question:hover {
+            background: rgba(40, 40, 40, 0.7);
         }
 
         .faq-answer {
-            padding: 0 1.5rem;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            padding: 0 20px;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
+            transition: var(--transition);
+            color: var(--dark-text-secondary); /* Used secondary color */
         }
 
-        .faq-item.active .faq-answer {
-            padding: 0 1.5rem 1.5rem;
+        .faq-answer.active {
+            padding: 20px;
             max-height: 200px;
         }
 
         /* Final CTA */
         .final-cta {
-            background: linear-gradient(135deg, var(--darker-bg), #111);
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(20, 20, 20, 0.9));
             text-align: center;
-            padding: 5rem 0;
-            margin: 3rem 0;
+            padding: 100px 20px;
         }
 
         .final-cta h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 1rem;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: clamp(2rem, 4vw, 2.5rem); /* Responsive font size */
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px; /* Adjusted letter spacing */
         }
 
         .final-cta p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: clamp(1.1rem, 2.7vw, 1.3rem); /* Responsive font size */
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            color: var(--dark-text-secondary); /* Used secondary color */
+             line-height: 1.7; /* Increased line height for readability */
         }
 
         /* Footer */
         footer {
-            background: var(--darker-bg);
-            padding: 3rem 0 2rem;
+            background: #000;
+            padding: 60px 20px 30px;
             text-align: center;
-            border-top: 1px solid var(--glass-border);
         }
 
         .footer-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--gold-accent);
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: -0.3px; /* Adjusted letter spacing */
         }
 
-        .footer-tagline {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
+        .footer-content p {
+            opacity: 0.7;
+            margin-bottom: 20px; /* Reduced margin */
+            color: var(--dark-text-secondary); /* Used secondary color */
         }
+
 
         .copyright {
-            color: var(--text-secondary);
+            opacity: 0.7;
             font-size: 0.9rem;
+            color: var(--dark-text-secondary); /* Used secondary color */
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Floating Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, var(--gold), #b8941f);
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            letter-spacing: 0.5px; /* Added letter spacing */
+            font-size: 0.95rem; /* Slightly smaller font */
         }
 
-        .animate-on-scroll {
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 35px rgba(212, 175, 55, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); }
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 90px;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 999;
         }
 
-        .animate-on-scroll.visible {
+        .back-to-top.show {
             opacity: 1;
             transform: translateY(0);
-            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .back-to-top:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem; /* Adjusted base size for smaller screens */
+            }
+
             .nav-links {
                 display: none;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .speaker-container {
+                flex-direction: column;
             }
 
-            .hero-subtitle {
-                font-size: 1.3rem;
+            .step-card {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .timer-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .cta-buttons {
@@ -570,110 +717,134 @@
                 align-items: center;
             }
 
-            .countdown-item {
-                min-width: 80px;
-                padding: 1rem;
+            .floating-btn,
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
             }
 
-            .countdown-number {
-                font-size: 2rem;
+            .back-to-top {
+                right: 90px;
             }
         }
 
-        /* Mobile Particles */
-        @media (max-width: 480px) {
-            .particle {
-                width: 1px;
-                height: 1px;
-            }
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">BIBC 2026</a>
-                <div class="nav-links">
-                    <a href="#what-you-learn">What You'll Learn</a>
-                    <a href="#event-details">Details</a>
-                    <a href="#why-attend">Why Attend</a>
-                    <a href="#speakers">Speakers</a>
-                    <a href="#faq">FAQ</a>
-                </div>
-            </nav>
+    <!-- Progress Bar -->
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="announcement-content">
+            🔥 EARLY REGISTRATION OPEN — SECURE YOUR SPOT TODAY
         </div>
-    </header>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <!-- Logo area now empty -->
+            <div class="nav-links">
+                <a href="#what-you-will-learn">What You'll Learn</a>
+                <a href="#speaker">Speaker</a>
+                <a href="#why-attend">Why Attend</a>
+                <a href="#details">Details</a>
+                <a href="#testimonials">Testimonials</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="particles" id="particles"></div>
-        <div class="container">
-            <div class="hero-content">
-                <h1>BELIEVERS IN BUSINESS CONFERENCE 2026</h1>
-                <p class="hero-subtitle">3 Days of Breaking Limitations, Walking In Favour, And Commanding Profit.</p>
-                <p>Join hundreds of believers from across Nigeria and beyond for a powerful 3-day online conference designed to help you build a profitable, impactful, and purpose-driven business.</p>
-                <div class="cta-buttons">
-                    <a href="https://chat.whatsapp.com/CO9djQ5SntE99g7bct7wWD" class="btn btn-primary">Register Now</a>
-                    <a href="https://chat.whatsapp.com/CO9djQ5SntE99g7bct7wWD" class="btn btn-secondary">Become a Partner</a>
-                </div>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>BELIEVERS IN BUSINESS CONFERENCE 2026</h1>
+            <p>3 Days of Breaking Limitations, Walking In Favour, And Commanding Profit.</p>
+            <p>Join hundreds of believers from across Nigeria and beyond for a powerful 3-day online conference designed to help you build a profitable, impactful, and purpose-driven business.</p>
+            <div class="cta-buttons">
+                <a href="#" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> REGISTER NOW
+                </a>
+                <a href="#" target="_blank" class="btn btn-secondary">
+                    <i class="fas fa-handshake"></i> BECOME A PARTNER
+                </a>
+            </div>
+            <div class="secure-payment">
+                <i class="fas fa-lock"></i> Secure Payment Powered by Paystack
             </div>
         </div>
     </section>
 
     <!-- What You Will Learn -->
-    <section id="what-you-learn">
+    <section id="what-you-will-learn">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">What You Will Learn</h2>
-            <div class="learn-grid">
-                <div class="learn-card animate-on-scroll">
-                    <div class="learn-icon">💰</div>
+            <h2 class="section-title">What You Will Learn</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-bible"></i>
+                    </div>
                     <h3>Biblical Principles of Wealth Creation</h3>
                 </div>
-                <div class="learn-card animate-on-scroll">
-                    <div class="learn-icon">👥</div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
                     <h3>How to Attract More Customers</h3>
                 </div>
-                <div class="learn-card animate-on-scroll">
-                    <div class="learn-icon">📊</div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
                     <h3>Marketing and Sales Strategies That Work</h3>
                 </div>
-                <div class="learn-card animate-on-scroll">
-                    <div class="learn-icon">👑</div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
                     <h3>Leadership Skills for Business Growth</h3>
                 </div>
-                <div class="learn-card animate-on-scroll">
-                    <div class="learn-icon">💰</div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
                     <h3>Managing Money God's Way</h3>
                 </div>
-                <div class="learn-card animate-on-scroll">
-                    <div class="learn-icon">🎯</div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
                     <h3>Building a Business With Purpose and Impact</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Event Details -->
-    <section id="event-details">
+    <!-- Featured Speaker -->
+    <section class="speaker-section" id="speaker">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Event Details</h2>
-            <div class="details-grid">
-                <div class="detail-card animate-on-scroll">
-                    <div class="detail-icon">📅</div>
-                    <div class="detail-value">1st - 3rd October, 2026</div>
-                    <div class="detail-label">Date</div>
+            <h2 class="section-title">Featured Speaker</h2>
+            <div class="speaker-container">
+                <div class="speaker-image">
+                    <img src="daddy.jpeg" alt="Enoch Nalado" class="speaker-img animate-float">
                 </div>
-                <div class="detail-card animate-on-scroll">
-                    <div class="detail-icon">📍</div>
-                    <div class="detail-value">Telegram</div>
-                    <div class="detail-label">Venue</div>
-                </div>
-                <div class="detail-card animate-on-scroll">
-                    <div class="detail-icon">💎</div>
-                    <div class="detail-value">₦3,000</div>
-                    <div class="detail-label">Partnership Seed</div>
+                <div class="speaker-content">
+                    <h2 class="speaker-name">Enoch Nalado</h2>
+                    <h3 class="speaker-title">Leadership & Customer Growth Strategist</h3>
+                    <h3 class="speaker-title">Founder, Believers In Business Conference</h3>
+                    <p>Enoch Nalado is a Leadership & Customer Growth Strategist dedicated to helping believers build profitable businesses rooted in biblical principles. As the Founder of Believers In Business Conference, he empowers entrepreneurs to attract customers, increase impact, strengthen leadership capacity, and build businesses that honor God while creating lasting value.</p>
                 </div>
             </div>
         </div>
@@ -682,157 +853,191 @@
     <!-- Why Attend -->
     <section id="why-attend">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Why Attend?</h2>
-            <div class="features-grid">
-                <div class="feature-box animate-on-scroll">
-                    <h3>Grow Your Business</h3>
-                    <p>Using biblical wisdom and proven strategies to scale your enterprise.</p>
+            <h2 class="section-title">Why Attend</h2>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Grow Your Business Using Biblical Wisdom</h3>
                 </div>
-                <div class="feature-box animate-on-scroll">
-                    <h3>Learn Proven Strategies</h3>
-                    <p>Master business techniques that have worked for successful believers.</p>
+                <div class="why-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Learn Proven Business Strategies</h3>
                 </div>
-                <div class="feature-box animate-on-scroll">
-                    <h3>Connect With Believers</h3>
-                    <p>Network with like-minded entrepreneurs who share your values.</p>
+                <div class="why-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Connect With Kingdom-Minded Entrepreneurs</h3>
                 </div>
-                <div class="feature-box animate-on-scroll">
-                    <h3>Increase Profit</h3>
-                    <p>Discover practical ways to boost your revenue and profitability.</p>
+                <div class="why-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Discover Practical Ways To Increase Profit</h3>
                 </div>
-                <div class="feature-box animate-on-scroll">
-                    <h3>Create Impact</h3>
-                    <p>Build a business that creates positive change in society.</p>
+                <div class="why-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Build A Business That Creates Impact</h3>
                 </div>
-                <div class="feature-box animate-on-scroll">
-                    <h3>Gain Clarity</h3>
-                    <p>Get direction and vision for your business journey ahead.</p>
+                <div class="why-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3>Gain Clarity And Direction</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Speakers -->
-    <section id="speakers">
+    <!-- Event Details -->
+    <section id="details">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Featured Speakers</h2>
-            <div class="speakers-grid">
-                <div class="speaker-card animate-on-scroll">
-                    <div class="speaker-image">👤</div>
-                    <div class="speaker-name">Speaker Name</div>
-                    <div class="speaker-title">Business Leader</div>
-                    <p>Renowned entrepreneur and spiritual leader sharing insights on faith-based business success.</p>
+            <h2 class="section-title">Event Details</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Date</h3>
+                    <p>1st – 3rd October, 2026</p>
                 </div>
-                <div class="speaker-card animate-on-scroll">
-                    <div class="speaker-image">👤</div>
-                    <div class="speaker-name">Speaker Name</div>
-                    <div class="speaker-title">Wealth Creator</div>
-                    <p>Expert in biblical principles of wealth creation and financial stewardship.</p>
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Venue</h3>
+                    <p>Telegram</p>
                 </div>
-                <div class="speaker-card animate-on-scroll">
-                    <div class="speaker-image">👤</div>
-                    <div class="speaker-name">Speaker Name</div>
-                    <div class="speaker-title">Visionary</div>
-                    <p>Purpose-driven business coach helping believers maximize their potential.</p>
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Partnership Seed</h3>
+                    <p>₦3,000</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Process -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Registration Process</h2>
+            <div class="process-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h3>Register by paying your ₦3,000 Partnership Seed through Paystack.</h3>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h3>After payment, you will receive access instructions.</h3>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h3>Join the Telegram conference and prepare for transformation.</h3>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Countdown Timer -->
-    <section class="countdown">
+    <section class="countdown-container">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Countdown to Conference</h2>
-            <div class="countdown-container">
-                <div class="countdown-item">
-                    <div class="countdown-number" id="days">00</div>
-                    <div class="countdown-label">Days</div>
+            <h2 class="section-title">Conference Starts In</h2>
+            <div class="timer-grid">
+                <div class="time-unit">
+                    <div class="time-value" id="days">00</div>
+                    <div class="time-label">Days</div>
                 </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="hours">00</div>
-                    <div class="countdown-label">Hours</div>
+                <div class="time-unit">
+                    <div class="time-value" id="hours">00</div>
+                    <div class="time-label">Hours</div>
                 </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="minutes">00</div>
-                    <div class="countdown-label">Minutes</div>
+                <div class="time-unit">
+                    <div class="time-value" id="minutes">00</div>
+                    <div class="time-label">Minutes</div>
                 </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="seconds">00</div>
-                    <div class="countdown-label">Seconds</div>
+                <div class="time-unit">
+                    <div class="time-value" id="seconds">00</div>
+                    <div class="time-label">Seconds</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section>
+    <section id="testimonials">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">What Others Say</h2>
+            <h2 class="section-title">What People Say</h2>
             <div class="testimonials-grid">
-                <div class="testimonial-card animate-on-scroll">
-                    <p class="testimonial-text">This conference transformed how I see business and ministry. The integration of faith and commerce has revolutionized my approach.</p>
-                    <div class="testimonial-author">- Previous Attendee</div>
+                <div class="testimonial-card">
+                    <p>"This conference transformed how I see business and ministry."</p>
                 </div>
-                <div class="testimonial-card animate-on-scroll">
-                    <p class="testimonial-text">I've implemented the strategies learned here and seen a 300% increase in my business profits while staying true to my values.</p>
-                    <div class="testimonial-author">- Previous Attendee</div>
+                <div class="testimonial-card">
+                    <p>"I gained practical strategies that immediately improved my business."</p>
                 </div>
-                <div class="testimonial-card animate-on-scroll">
-                    <p class="testimonial-text">The connections made at this conference have opened doors I never thought possible. Truly life-changing!</p>
-                    <div class="testimonial-author">- Previous Attendee</div>
+                <div class="testimonial-card">
+                    <p>"A powerful blend of faith, leadership, and business excellence."</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq">
+    <section>
         <div class="container">
-            <h2 class="section-title animate-on-scroll">Frequently Asked Questions</h2>
+            <h2 class="section-title">Frequently Asked Questions</h2>
             <div class="faq-container">
-                <div class="faq-item animate-on-scroll">
-                    <div class="faq-question">
-                        Is the conference online?
-                        <span>+</span>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Is the conference online? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, the conference will be held entirely online through our Telegram platform, making it accessible to participants worldwide.</p>
+                        <p>Yes. The conference will be held entirely online through Telegram.</p>
                     </div>
                 </div>
-                <div class="faq-item animate-on-scroll">
-                    <div class="faq-question">
-                        How do I join after registration?
-                        <span>+</span>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How do I join after registration? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>After registering via WhatsApp, you'll receive an invitation link to join our exclusive Telegram group where the conference will take place.</p>
+                        <p>After successful registration, instructions will be provided to help you access the conference.</p>
                     </div>
                 </div>
-                <div class="faq-item animate-on-scroll">
-                    <div class="faq-question">
-                        Who can attend?
-                        <span>+</span>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Who can attend? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>The conference is open to all believers who are business owners, aspiring entrepreneurs, or interested in integrating faith with business practices.</p>
+                        <p>Anyone interested in growing a profitable and purpose-driven business is welcome.</p>
                     </div>
                 </div>
-                <div class="faq-item animate-on-scroll">
-                    <div class="faq-question">
-                        What is the partnership seed for?
-                        <span>+</span>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What is the partnership seed for? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>The ₦3,000 partnership seed helps cover conference costs and demonstrates your commitment to the event and community.</p>
+                        <p>The partnership seed helps support the conference and gives participants access to the event.</p>
                     </div>
                 </div>
-                <div class="faq-item animate-on-scroll">
-                    <div class="faq-question">
-                        Will recordings be available?
-                        <span>+</span>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Will recordings be available? <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Live participation is encouraged, but key sessions will be recorded and made available to registered participants.</p>
+                        <p>Further details regarding recordings will be communicated to registered participants.</p>
                     </div>
                 </div>
             </div>
@@ -844,7 +1049,9 @@
         <div class="container">
             <h2>Your Business Can Be Both Profitable And Purpose-Driven</h2>
             <p>Take the next step and join believers who are committed to building businesses that honor God while creating wealth and impact.</p>
-            <a href="https://chat.whatsapp.com/CO9djQ5SntE99g7bct7wWD" class="btn btn-primary">REGISTER NOW</a>
+            <a href="#" target="_blank" class="btn btn-primary">
+                <i class="fas fa-rocket"></i> REGISTER NOW
+            </a>
         </div>
     </section>
 
@@ -853,37 +1060,32 @@
         <div class="container">
             <div class="footer-content">
                 <h3>BELIEVERS IN BUSINESS CONFERENCE 2026</h3>
-                <p class="footer-tagline">Building Kingdom Businesses With Purpose.</p>
-                <p class="copyright">© 2026 Believers In Business Conference. All Rights Reserved.</p>
+                <p>Building Kingdom Businesses With Purpose.</p>
+            </div>
+            <div class="copyright">
+                © 2026 Believers In Business Conference. All Rights Reserved.
             </div>
         </div>
     </footer>
 
+    <!-- Floating Button -->
+    <button class="floating-btn" onclick="window.open('#', '_blank')">
+        <i class="fas fa-rocket"></i> REGISTER NOW
+    </button>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Random position and animation duration
-                const x = Math.random();
-                const y = Math.random() * 100;
-                const delay = Math.random() * 15;
-                const duration = 10 + Math.random() * 20;
-                
-                particle.style.left = `${x * 100}%`;
-                particle.style.top = `${y}%`;
-                particle.style.animationDelay = `${delay}s`;
-                particle.style.animationDuration = `${duration}s`;
-                particle.style.setProperty('--x', x.toString());
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
 
         // Countdown Timer
         function updateCountdown() {
@@ -897,88 +1099,97 @@
                 const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                document.getElementById('days').textContent = days.toString().padStart(2, '0');
-                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                document.getElementById('days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
             } else {
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
             }
         }
 
-        // FAQ Accordion
-        function initFAQ() {
-            const faqItems = document.querySelectorAll('.faq-item');
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .why-card, .step-card');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Initial check
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
             
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                // Close other open FAQs
+                document.querySelectorAll('.faq-answer.active').forEach(openAnswer => {
+                    openAnswer.classList.remove('active');
+                    const question = openAnswer.previousElementSibling;
+                    const questionIcon = question.querySelector('i');
+                    questionIcon.classList.remove('fa-chevron-up');
+                    questionIcon.classList.add('fa-chevron-down');
+                });
                 
-                question.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    
-                    // Close all items
-                    faqItems.forEach(i => i.classList.remove('active'));
-                    
-                    // Open clicked item if it wasn't active
-                    if (!isActive) {
-                        item.classList.add('active');
-                    }
-                });
-            });
+                answer.classList.add('active');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
         }
 
-        // Scroll Animation
-        function initScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.animate-on-scroll').forEach(el => {
-                observer.observe(el);
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
             });
-        }
-
-        // Smooth Scrolling for Navigation
-        function initSmoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-            initFAQ();
-            initScrollAnimations();
-            initSmoothScroll();
         });
 
-        // Handle window resize for responsive adjustments
-        window.addEventListener('resize', () => {
-            // Recalculate any responsive elements if needed
+        // Back to Top Button
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Preload images for smoother experience
+        window.addEventListener('load', () => {
+            const img = new Image();
+            img.src = 'daddy.jpeg';
         });
     </script>
 </body>
